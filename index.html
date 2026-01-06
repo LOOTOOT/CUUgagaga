@@ -1,0 +1,1889 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#FFF5F0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <title>两张看了就犯恶心的超绝图片</title>
+    
+    <!-- 预加载关键资源 -->
+    <link rel="preload" as="image" href="https://cdn.jsdelivr.net/gh/LOOTOOT/CUUgagaga@main/CUU-mos.png">
+    <link rel="preload" as="image" href="https://cdn.jsdelivr.net/gh/LOOTOOT/CUUgagaga@main/CUU-clear.png">
+    
+    <style>
+        /* ========================================
+           CSS 变量 - 丰富多彩的色彩系统
+           ======================================== */
+        :root {
+            /* 主色调 - 暖橘粉 */
+            --primary: #FF8A65;
+            --primary-light: #FFAB91;
+            --primary-dark: #E64A19;
+            
+            /* 次要色 - 蜜桃珊瑚 */
+            --secondary: #FFCCBC;
+            --secondary-light: #FFE0B2;
+            --secondary-dark: #FF8A65;
+            
+            /* 强调色 - 活力青柠 */
+            --accent: #B2FF59;
+            --accent-light: #CCFF90;
+            --accent-dark: #76FF03;
+            
+            /* 点缀色 - 梦幻紫粉 */
+            --highlight: #FF80AB;
+            --highlight-dark: #FF4081;
+            
+            /* 额外彩色 */
+            --coral: #FF7043;
+            --peach: #FFAB91;
+            --mint: #A7FFEB;
+            --lavender: #E1BEE7;
+            --sunshine: #FFD54F;
+            
+            /* 背景 - 更有活力 */
+            --bg-primary: #FFF3E0;
+            --bg-secondary: #FFE0B2;
+            --bg-card: #FFFFFF;
+            
+            /* 文字 */
+            --text-primary: #3E2723;
+            --text-secondary: #5D4037;
+            --text-on-primary: #FFFFFF;
+            --text-on-accent: #1B5E20;
+            
+            /* Apple 风格 Spring 缓动 */
+            --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+            --ease-spring-gentle: cubic-bezier(0.22, 1, 0.36, 1);
+            --ease-spring-snappy: cubic-bezier(0.25, 0.1, 0.25, 1);
+            --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+            --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            
+            /* 间距 */
+            --space-xs: 8px;
+            --space-sm: 12px;
+            --space-md: 16px;
+            --space-lg: 24px;
+            --space-xl: 32px;
+            
+            /* 圆角 */
+            --radius-sm: 12px;
+            --radius-md: 16px;
+            --radius-lg: 20px;
+            --radius-xl: 28px;
+            --radius-full: 9999px;
+        }
+
+        /* ========================================
+           重置与基础
+           ======================================== */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-tap-highlight-color: transparent;
+            scroll-behavior: smooth;
+            /* 强制手机视图 */
+            overflow-x: hidden;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, "PingFang SC", "Microsoft YaHei", sans-serif;
+            background: linear-gradient(
+                180deg,
+                var(--bg-primary) 0%,
+                var(--bg-secondary) 30%,
+                var(--peach) 70%,
+                var(--coral) 100%
+            );
+            background-attachment: fixed;
+            min-height: 100vh;
+            min-height: 100dvh;
+            overflow-x: hidden;
+            color: var(--text-primary);
+            line-height: 1.6;
+            /* 强制限制最大宽度为手机视图 */
+            max-width: 100vw;
+        }
+
+        /* 减少动画偏好支持 */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* ========================================
+           强制手机视图容器
+           ======================================== */
+        .mobile-container {
+            max-width: 430px;
+            margin: 0 auto;
+            min-height: 100vh;
+            min-height: 100dvh;
+            position: relative;
+            overflow: hidden;
+            /* 在大屏幕上添加边框效果 */
+            box-shadow: 0 0 60px rgba(0, 0, 0, 0.1);
+        }
+
+        @media (min-width: 431px) {
+            body {
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                display: flex;
+                justify-content: center;
+                align-items: flex-start;
+                padding: 20px 0;
+            }
+            
+            .mobile-container {
+                border-radius: 40px;
+                overflow: hidden;
+                border: 8px solid #333;
+                box-shadow: 
+                    0 25px 50px -12px rgba(0, 0, 0, 0.5),
+                    inset 0 0 0 2px rgba(255,255,255,0.1);
+            }
+        }
+
+        /* ========================================
+           页面容器 - 全屏滑动
+           ======================================== */
+        .pages-wrapper {
+            display: flex;
+            width: 200%;
+            transition: transform 0.6s var(--ease-out-expo);
+            will-change: transform;
+        }
+
+        .pages-wrapper.page-2-active {
+            transform: translateX(-50%);
+        }
+
+        .page {
+            width: 50%;
+            min-height: 100vh;
+            min-height: 100dvh;
+            padding: var(--space-lg);
+            padding-bottom: 120px;
+            flex-shrink: 0;
+            background: linear-gradient(
+                180deg,
+                var(--bg-primary) 0%,
+                var(--bg-secondary) 30%,
+                var(--peach) 70%,
+                var(--coral) 100%
+            );
+        }
+
+        .page-content {
+            max-width: 100%;
+            margin: 0 auto;
+        }
+
+        /* ========================================
+           进场动画 Keyframes - Apple 风格
+           ======================================== */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.88);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes floatPulse {
+            0%, 100% { 
+                transform: translateY(0) scale(1); 
+            }
+            50% { 
+                transform: translateY(-8px) scale(1.02); 
+            }
+        }
+
+        @keyframes shimmer {
+            0% { background-position: -200% center; }
+            100% { background-position: 200% center; }
+        }
+
+        @keyframes rainbow {
+            0% { filter: hue-rotate(0deg); }
+            100% { filter: hue-rotate(360deg); }
+        }
+
+        @keyframes gentleBounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-4px); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        @keyframes wiggle {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-3deg); }
+            75% { transform: rotate(3deg); }
+        }
+
+        /* ========================================
+           第一页 - 标题卡片
+           ======================================== */
+        .title-card {
+            background: linear-gradient(
+                135deg,
+                var(--primary) 0%,
+                var(--highlight) 50%,
+                var(--coral) 100%
+            );
+            padding: var(--space-lg);
+            border-radius: var(--radius-xl);
+            margin-bottom: var(--space-lg);
+            position: relative;
+            overflow: hidden;
+            box-shadow:
+                0 10px 30px rgba(255, 138, 101, 0.4),
+                0 4px 12px rgba(255, 64, 129, 0.3),
+                inset 0 2px 0 rgba(255, 255, 255, 0.3),
+                inset 0 -2px 0 rgba(0, 0, 0, 0.1);
+            animation: scaleIn 0.6s var(--ease-spring) 0.1s both;
+        }
+
+        .title-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                45deg,
+                transparent 40%,
+                rgba(255, 255, 255, 0.15) 50%,
+                transparent 60%
+            );
+            animation: shimmer 3s infinite linear;
+        }
+
+        .title-card::after {
+            content: '◆';
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.6);
+            animation: wiggle 2s ease-in-out infinite;
+        }
+
+        .title-card h1 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--text-on-primary);
+            text-align: center;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ========================================
+           第一页 - 图片网格
+           ======================================== */
+        .image-grid-main {
+            display: flex;
+            gap: var(--space-sm);
+            margin-bottom: var(--space-lg);
+        }
+
+        .image-card {
+            flex: 1;
+            aspect-ratio: 9 / 16;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            cursor: pointer;
+            position: relative;
+            background: linear-gradient(
+                145deg,
+                var(--secondary-light) 0%,
+                var(--lavender) 100%
+            );
+            box-shadow:
+                0 8px 25px rgba(255, 138, 101, 0.35),
+                0 4px 10px rgba(255, 128, 171, 0.2),
+                inset 0 2px 0 rgba(255, 255, 255, 0.4),
+                inset 0 -2px 0 rgba(0, 0, 0, 0.05);
+            transition: 
+                transform 0.4s var(--ease-spring),
+                box-shadow 0.4s var(--ease-spring-gentle);
+            animation: fadeInUp 0.6s var(--ease-spring) both;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .image-card:nth-child(1) { animation-delay: 0.2s; }
+        .image-card:nth-child(2) { animation-delay: 0.35s; }
+
+        .image-card:hover,
+        .image-card:focus {
+            transform: scale(1.03) translateY(-6px);
+            box-shadow:
+                0 16px 40px rgba(255, 138, 101, 0.45),
+                0 8px 20px rgba(255, 64, 129, 0.25),
+                inset 0 2px 0 rgba(255, 255, 255, 0.5),
+                inset 0 -2px 0 rgba(0, 0, 0, 0.08);
+        }
+
+        .image-card:active {
+            transform: scale(0.96);
+            transition-duration: 0.15s;
+        }
+
+        .image-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.4s var(--ease-spring);
+        }
+
+        .image-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .image-label {
+            position: absolute;
+            bottom: var(--space-sm);
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(
+                135deg,
+                rgba(255, 138, 101, 0.9) 0%,
+                rgba(255, 64, 129, 0.9) 100%
+            );
+            color: white;
+            padding: 6px 16px;
+            border-radius: var(--radius-sm);
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+
+        /* ========================================
+           第一页 - 提示卡片
+           ======================================== */
+        .tip-card {
+            background: linear-gradient(
+                135deg,
+                var(--accent) 0%,
+                var(--mint) 50%,
+                var(--accent-light) 100%
+            );
+            padding: var(--space-md) var(--space-lg);
+            border-radius: var(--radius-lg);
+            text-align: center;
+            box-shadow:
+                0 8px 25px rgba(118, 255, 3, 0.35),
+                0 4px 10px rgba(178, 255, 89, 0.2),
+                inset 0 2px 0 rgba(255, 255, 255, 0.4),
+                inset 0 -2px 0 rgba(0, 0, 0, 0.05);
+            animation: fadeInUp 0.6s var(--ease-spring) 0.5s both;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tip-card::before {
+            content: '✦';
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1rem;
+            color: var(--text-on-accent);
+            opacity: 0.7;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .tip-card::after {
+            content: '✦';
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1rem;
+            color: var(--text-on-accent);
+            opacity: 0.7;
+            animation: pulse 2s ease-in-out infinite 0.5s;
+        }
+
+        .tip-card p {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--text-on-accent);
+        }
+
+        /* ========================================
+           第二页 - 标题样式
+           ======================================== */
+        .page-2-header {
+            margin-bottom: var(--space-lg);
+            animation: slideInRight 0.6s var(--ease-spring) 0.1s both;
+        }
+
+        .page-2-title {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            line-height: 1.5;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 8px;
+        }
+
+        .page-2-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--highlight), var(--accent));
+            border-radius: 2px;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        /* ========================================
+           第二页 - 混合比例图片网格
+           ======================================== */
+        .gallery-grid {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-md);
+        }
+
+        .gallery-item {
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            cursor: pointer;
+            position: relative;
+            background: linear-gradient(
+                145deg,
+                var(--bg-card) 0%,
+                var(--lavender) 100%
+            );
+            box-shadow:
+                0 6px 20px rgba(255, 138, 101, 0.25),
+                0 3px 8px rgba(225, 190, 231, 0.3),
+                inset 0 2px 0 rgba(255, 255, 255, 0.5),
+                inset 0 -1px 0 rgba(0, 0, 0, 0.03);
+            transition: 
+                transform 0.4s var(--ease-spring),
+                box-shadow 0.4s var(--ease-spring-gentle);
+            animation: fadeInUp 0.6s var(--ease-spring) both;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .gallery-item:nth-child(1) { animation-delay: 0.1s; }
+        .gallery-item:nth-child(2) { animation-delay: 0.18s; }
+        .gallery-item:nth-child(3) { animation-delay: 0.26s; }
+        .gallery-item:nth-child(4) { animation-delay: 0.34s; }
+        .gallery-item:nth-child(5) { animation-delay: 0.42s; }
+        .gallery-item:nth-child(6) { animation-delay: 0.5s; }
+        .gallery-item:nth-child(7) { animation-delay: 0.58s; }
+
+        /* 9:16 竖图 */
+        .gallery-item.ratio-9-16 {
+            aspect-ratio: 9 / 16;
+            max-width: 65%;
+            margin: 0 auto;
+        }
+
+        /* 3:1 横图 */
+        .gallery-item.ratio-3-1 {
+            aspect-ratio: 3 / 1;
+        }
+
+        .gallery-item:hover,
+        .gallery-item:focus {
+            transform: scale(1.02) translateY(-4px);
+            box-shadow:
+                0 14px 35px rgba(255, 138, 101, 0.35),
+                0 6px 15px rgba(255, 64, 129, 0.2),
+                inset 0 2px 0 rgba(255, 255, 255, 0.6),
+                inset 0 -1px 0 rgba(0, 0, 0, 0.05);
+        }
+
+        .gallery-item:active {
+            transform: scale(0.97);
+            transition-duration: 0.15s;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.4s var(--ease-spring);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.03);
+        }
+
+        /* 图片标签 */
+        .gallery-item .item-tag {
+            position: absolute;
+            top: var(--space-sm);
+            left: var(--space-sm);
+            background: linear-gradient(
+                135deg,
+                var(--highlight) 0%,
+                var(--sunshine) 100%
+            );
+            color: var(--text-primary);
+            padding: 5px 12px;
+            border-radius: var(--radius-sm);
+            font-size: 0.65rem;
+            font-weight: 700;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+            animation: gentleBounce 3s ease-in-out infinite;
+        }
+
+        /* ========================================
+           页面切换导航 - 更精致
+           ======================================== */
+        .page-nav {
+            position: fixed;
+            bottom: var(--space-lg);
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: var(--space-sm);
+            z-index: 100;
+            background: linear-gradient(
+                145deg,
+                rgba(255, 255, 255, 0.95) 0%,
+                rgba(255, 224, 178, 0.95) 100%
+            );
+            padding: 10px 16px;
+            border-radius: var(--radius-full);
+            box-shadow:
+                0 6px 25px rgba(255, 138, 101, 0.25),
+                0 3px 10px rgba(0, 0, 0, 0.1),
+                inset 0 2px 0 rgba(255, 255, 255, 0.8),
+                inset 0 -1px 0 rgba(0, 0, 0, 0.05);
+            animation: fadeInUp 0.6s var(--ease-spring) 0.7s both;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        .nav-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            transition: all 0.35s var(--ease-spring);
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--lavender) 100%);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .nav-dot.active {
+            width: 32px;
+            border-radius: var(--radius-full);
+            background: linear-gradient(90deg, var(--primary), var(--highlight));
+            box-shadow: 0 3px 10px rgba(255, 138, 101, 0.4);
+        }
+
+        .nav-dot:hover:not(.active) {
+            transform: scale(1.25);
+            background: linear-gradient(135deg, var(--secondary-dark) 0%, var(--highlight) 100%);
+        }
+
+        .nav-dot:active {
+            transform: scale(0.9);
+        }
+
+        /* ========================================
+           音频控制按钮 - 流动波浪效果
+           ======================================== */
+        .audio-control {
+            position: fixed;
+            bottom: var(--space-lg);
+            right: var(--space-lg);
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            z-index: 100;
+            background: linear-gradient(
+                145deg,
+                var(--accent) 0%,
+                var(--mint) 50%,
+                var(--accent-light) 100%
+            );
+            box-shadow:
+                0 4px 14px rgba(118, 255, 3, 0.35),
+                0 2px 6px rgba(178, 255, 89, 0.25),
+                inset 0 1px 0 rgba(255, 255, 255, 0.4),
+                inset 0 -1px 0 rgba(0, 0, 0, 0.08);
+            transition: all 0.35s var(--ease-spring);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: fadeInUp 0.6s var(--ease-spring) 0.8s both;
+            -webkit-tap-highlight-color: transparent;
+            overflow: hidden;
+        }
+
+        /* 波浪动画背景 */
+        .audio-control::before,
+        .audio-control::after {
+            content: '';
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            animation: waveRipple 2s ease-out infinite;
+        }
+
+        .audio-control::before {
+            width: 100%;
+            height: 100%;
+            animation-delay: 0s;
+        }
+
+        .audio-control::after {
+            width: 100%;
+            height: 100%;
+            animation-delay: 1s;
+        }
+
+        @keyframes waveRipple {
+            0% {
+                transform: scale(0.8);
+                opacity: 0.6;
+            }
+            100% {
+                transform: scale(2);
+                opacity: 0;
+            }
+        }
+
+        .audio-control:hover {
+            transform: scale(1.08) translateY(-2px);
+            box-shadow:
+                0 8px 22px rgba(118, 255, 3, 0.45),
+                0 4px 10px rgba(178, 255, 89, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.5),
+                inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+        }
+
+        .audio-control:active {
+            transform: scale(0.94);
+            transition-duration: 0.12s;
+        }
+
+        .audio-control svg {
+            width: 20px;
+            height: 20px;
+            fill: var(--text-on-accent);
+            transition: transform 0.25s var(--ease-spring);
+            position: relative;
+            z-index: 1;
+        }
+
+        .audio-control:hover svg {
+            transform: scale(1.08);
+        }
+
+        .audio-control.muted {
+            background: linear-gradient(
+                145deg,
+                var(--secondary) 0%,
+                var(--lavender) 100%
+            );
+        }
+
+        .audio-control.muted::before,
+        .audio-control.muted::after {
+            animation: none;
+            opacity: 0;
+        }
+
+        .audio-control.muted svg {
+            opacity: 0.5;
+        }
+
+        /* ========================================
+           全屏模态框
+           ======================================== */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.92);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: var(--space-md);
+            opacity: 0;
+            visibility: hidden;
+            transition: 
+                opacity 0.35s var(--ease-spring-gentle),
+                visibility 0.35s;
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            position: relative;
+            max-width: 100%;
+            max-height: 85vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transform: scale(0.88) translateY(25px);
+            transition: transform 0.45s var(--ease-spring);
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: scale(1) translateY(0);
+        }
+
+        .modal-content img {
+            max-width: 100%;
+            max-height: 85vh;
+            object-fit: contain;
+            border-radius: var(--radius-md);
+            box-shadow: 
+                0 25px 70px rgba(0, 0, 0, 0.5),
+                0 10px 25px rgba(255, 138, 101, 0.2);
+        }
+
+        /* 关闭按钮 */
+        .modal-close {
+            position: absolute;
+            top: -55px;
+            right: 0;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            border: none;
+            background: linear-gradient(
+                145deg,
+                rgba(255, 255, 255, 0.2) 0%,
+                rgba(255, 138, 101, 0.3) 100%
+            );
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s var(--ease-spring);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .modal-close:hover {
+            background: linear-gradient(
+                145deg,
+                rgba(255, 255, 255, 0.3) 0%,
+                rgba(255, 64, 129, 0.4) 100%
+            );
+            transform: scale(1.12) rotate(90deg);
+        }
+
+        .modal-close:active {
+            transform: scale(0.92);
+        }
+
+        /* ========================================
+           留言悬浮框
+           ======================================== */
+        .message-box {
+            position: absolute;
+            bottom: var(--space-lg);
+            left: var(--space-md);
+            right: var(--space-md);
+            max-width: 360px;
+            margin: 0 auto;
+            background: linear-gradient(
+                145deg,
+                rgba(255, 255, 255, 0.95) 0%,
+                rgba(255, 224, 178, 0.95) 100%
+            );
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            padding: var(--space-md);
+            border-radius: var(--radius-lg);
+            box-shadow:
+                0 12px 40px rgba(0, 0, 0, 0.25),
+                0 4px 12px rgba(255, 138, 101, 0.2),
+                inset 0 2px 0 rgba(255, 255, 255, 0.6);
+            transform: translateY(25px);
+            opacity: 0;
+            transition: all 0.45s var(--ease-spring);
+        }
+
+        .modal-overlay.active .message-box {
+            transform: translateY(0);
+            opacity: 1;
+            transition-delay: 0.2s;
+        }
+
+        .message-box.hidden {
+            transform: translateY(25px) scale(0.92);
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transition-delay: 0s;
+        }
+
+        .message-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--space-xs);
+        }
+
+        .message-title {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+        }
+
+        .message-close {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            border: none;
+            background: linear-gradient(135deg, var(--secondary-light) 0%, var(--highlight) 100%);
+            color: var(--text-primary);
+            font-size: 0.85rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.25s var(--ease-spring);
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .message-close:hover {
+            background: linear-gradient(135deg, var(--highlight) 0%, var(--primary) 100%);
+            transform: scale(1.12);
+            color: white;
+        }
+
+        .message-close:active {
+            transform: scale(0.92);
+        }
+
+        .message-text {
+            font-size: 0.85rem;
+            color: var(--text-primary);
+            line-height: 1.7;
+        }
+
+        /* ========================================
+           Toast 提醒
+           ======================================== */
+        .toast {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.85);
+            background: linear-gradient(
+                145deg,
+                rgba(255, 255, 255, 0.98) 0%,
+                var(--sunshine) 100%
+            );
+            padding: var(--space-md) var(--space-lg);
+            border-radius: var(--radius-lg);
+            box-shadow:
+                0 15px 50px rgba(0, 0, 0, 0.3),
+                0 5px 15px rgba(255, 213, 79, 0.3),
+                inset 0 2px 0 rgba(255, 255, 255, 0.6);
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s var(--ease-spring);
+        }
+
+        .toast.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .toast p {
+            color: var(--text-primary);
+            font-weight: 700;
+            font-size: 0.95rem;
+            white-space: nowrap;
+        }
+
+        /* ========================================
+           首次播放提示
+           ======================================== */
+        .play-prompt {
+            position: fixed;
+            inset: 0;
+            background: linear-gradient(
+                180deg,
+                rgba(62, 39, 35, 0.85) 0%,
+                rgba(255, 138, 101, 0.75) 100%
+            );
+            z-index: 3000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-lg);
+            cursor: pointer;
+            transition: all 0.5s var(--ease-spring-gentle);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+
+        .play-prompt.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .play-icon {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: linear-gradient(
+                145deg,
+                var(--primary) 0%,
+                var(--highlight) 50%,
+                var(--coral) 100%
+            );
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow:
+                0 12px 40px rgba(255, 138, 101, 0.5),
+                0 5px 15px rgba(255, 64, 129, 0.4),
+                inset 0 3px 0 rgba(255, 255, 255, 0.4),
+                inset 0 -3px 0 rgba(0, 0, 0, 0.15);
+            animation: floatPulse 2.5s ease-in-out infinite;
+        }
+
+        .play-icon span {
+            font-size: 2.5rem;
+            margin-left: 6px;
+            color: white;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .play-text {
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        /* ========================================
+           滚动条美化
+           ======================================== */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-secondary);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, var(--primary), var(--highlight));
+            border-radius: 3px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(180deg, var(--primary-dark), var(--highlight-dark));
+        }
+
+        /* ========================================
+           轮播组件样式 - 9:16竖图展示
+           ======================================== */
+        .carousel-container {
+            width: 100%;
+            margin-bottom: var(--space-lg);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .carousel-track {
+            display: flex;
+            gap: var(--space-sm);
+            padding: var(--space-md) 0;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            padding-left: calc(50% - 35%);
+            padding-right: calc(50% - 35%);
+        }
+
+        .carousel-track::-webkit-scrollbar {
+            display: none;
+        }
+
+        .carousel-item {
+            flex: 0 0 70%;
+            aspect-ratio: 9 / 16;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            cursor: pointer;
+            position: relative;
+            scroll-snap-align: center;
+            transform: scale(0.88);
+            opacity: 0.6;
+            transition:
+                transform 0.4s var(--ease-spring),
+                opacity 0.4s var(--ease-spring-gentle),
+                box-shadow 0.4s var(--ease-spring);
+            background: linear-gradient(
+                145deg,
+                var(--bg-card) 0%,
+                var(--lavender) 100%
+            );
+            box-shadow:
+                0 4px 15px rgba(255, 138, 101, 0.2),
+                inset 0 2px 0 rgba(255, 255, 255, 0.4);
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .carousel-item.active {
+            transform: scale(1);
+            opacity: 1;
+            box-shadow:
+                0 12px 35px rgba(255, 138, 101, 0.35),
+                0 6px 15px rgba(255, 64, 129, 0.2),
+                inset 0 2px 0 rgba(255, 255, 255, 0.5),
+                inset 0 -1px 0 rgba(0, 0, 0, 0.05);
+        }
+
+        .carousel-item:active {
+            transform: scale(0.95);
+            transition-duration: 0.15s;
+        }
+
+        .carousel-item.active:active {
+            transform: scale(0.97);
+        }
+
+        .carousel-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.4s var(--ease-spring);
+        }
+
+        .carousel-item.active:hover img {
+            transform: scale(1.03);
+        }
+
+        .carousel-item .item-tag {
+            position: absolute;
+            top: var(--space-sm);
+            left: var(--space-sm);
+            background: linear-gradient(
+                135deg,
+                var(--highlight) 0%,
+                var(--sunshine) 100%
+            );
+            color: var(--text-primary);
+            padding: 5px 12px;
+            border-radius: var(--radius-sm);
+            font-size: 0.65rem;
+            font-weight: 700;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            transform: translateY(-5px);
+            transition: all 0.3s var(--ease-spring);
+        }
+
+        .carousel-item.active .item-tag {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* 轮播指示器 */
+        .carousel-indicators {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: var(--space-sm);
+        }
+
+        .carousel-indicator {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--lavender) 100%);
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s var(--ease-spring);
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .carousel-indicator.active {
+            width: 24px;
+            border-radius: var(--radius-full);
+            background: linear-gradient(90deg, var(--primary), var(--highlight));
+        }
+
+        /* 滑动提示 */
+        .carousel-hint {
+            text-align: center;
+            font-size: 0.7rem;
+            color: var(--text-secondary);
+            opacity: 0.7;
+            margin-top: var(--space-xs);
+        }
+
+        /* 横图分隔标题 */
+        .gallery-section-title {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin: var(--space-lg) 0 var(--space-md);
+            padding-left: var(--space-xs);
+            position: relative;
+        }
+
+        .gallery-section-title::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 3px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--highlight), var(--accent));
+            border-radius: 2px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 强制手机视图容器 -->
+    <div class="mobile-container">
+        <!-- ========================================
+             首次交互提示
+             ======================================== -->
+        <div class="play-prompt" id="playPrompt">
+            <div class="play-icon">
+                <span>▶</span>
+            </div>
+            <p class="play-text">点击屏幕开始</p>
+        </div>
+
+        <!-- ========================================
+             双页面容器
+             ======================================== -->
+        <div class="pages-wrapper" id="pagesWrapper">
+            
+            <!-- ====== 第一页：恶搞图片 ====== -->
+            <section class="page page-1">
+                <div class="page-content">
+                    <!-- 标题卡片 -->
+                    <header class="title-card">
+                        <h1>两张看了就头晕的图片</h1>
+                    </header>
+
+                    <!-- 图片展示 -->
+                    <div class="image-grid-main">
+                        <div class="image-card" data-index="0">
+                            <img src="https://cdn.jsdelivr.net/gh/LOOTOOT/CUUgagaga@main/CUU-mos.png" alt="图一">
+                            <span class="image-label">图一 · MOS</span>
+                        </div>
+                        <div class="image-card" data-index="1">
+                            <img src="https://cdn.jsdelivr.net/gh/LOOTOOT/CUUgagaga@main/CUU-clear.png" alt="图二">
+                            <span class="image-label">图二 · CLEAR</span>
+                        </div>
+                    </div>
+
+                    <!-- 提示文字 -->
+                    <footer class="tip-card">
+                        <p>头晕就是好图.jpg</p>
+                    </footer>
+                </div>
+            </section>
+
+            <!-- ====== 第二页：镭射卡展示 ====== -->
+            <section class="page page-2">
+                <div class="page-content">
+                    <!-- 左上角标题 -->
+                    <header class="page-2-header">
+                        <h2 class="page-2-title">此乃镭射卡和一些没用上的图片，殿下请看。似乎双击可以放大</h2>
+                    </header>
+
+                    <!-- 9:16 竖图轮播区 -->
+                    <div class="carousel-container">
+                        <div class="carousel-track" id="carouselTrack">
+                            <!-- Jasmine_Happy -->
+                            <div class="carousel-item active" data-carousel-index="0">
+                                <img src="https://cdn.jsdelivr.net/gh/LOOTOOT/CUUgagaga@main/Jasmine_Happy.png" alt="Jasmine Happy">
+                                <span class="item-tag">♦ 此乃佳作</span>
+                            </div>
+
+                            <!-- HP1 -->
+                            <div class="carousel-item" data-carousel-index="1">
+                                <img src="https://cdn.jsdelivr.net/gh/LOOTOOT/CUUgagaga@main/CUU_HP1.png" alt="HP1">
+                                <span class="item-tag">镭射卡 正面</span>
+                            </div>
+
+                            <!-- HP2 -->
+                            <div class="carousel-item" data-carousel-index="2">
+                                <img src="https://cdn.jsdelivr.net/gh/LOOTOOT/CUUgagaga@main/CUU_HP2.png" alt="HP2">
+                                <span class="item-tag">镭射卡 背面</span>
+                            </div>
+
+                            <!-- 5D1 -->
+                            <div class="carousel-item" data-carousel-index="3">
+                                <img src="https://cdn.jsdelivr.net/gh/LOOTOOT/CUUgagaga@main/CUU_5D1.jpg" alt="5D1">
+                                <span class="item-tag">5元 正面</span>
+                            </div>
+
+                            <!-- 5D2 -->
+                            <div class="carousel-item" data-carousel-index="4">
+                                <img src="https://cdn.jsdelivr.net/gh/LOOTOOT/CUUgagaga@main/CUU_5D2.jpg" alt="5D2">
+                                <span class="item-tag">5元 背面</span>
+                            </div>
+
+                            <!-- 10D2 -->
+                            <div class="carousel-item" data-carousel-index="5">
+                                <img src="https://cdn.jsdelivr.net/gh/LOOTOOT/CUUgagaga@main/CUU_10D2.jpg" alt="10D2">
+                                <span class="item-tag">10元 背面</span>
+                            </div>
+                        </div>
+                        <div class="carousel-indicators" id="carouselIndicators"></div>
+                        <p class="carousel-hint">← 左右滑动查看更多 →</p>
+                    </div>
+
+                    <!-- 横图区 - 只保留10D1 -->
+                    <h3 class="gallery-section-title">横幅图片</h3>
+                    <div class="gallery-grid">
+                        <!-- 10D1 - 3:1 横图 -->
+                        <div class="gallery-item ratio-3-1" data-index="5">
+                            <img src="https://cdn.jsdelivr.net/gh/LOOTOOT/CUUgagaga@main/CUU_10D1.png" alt="10D1">
+                            <span class="item-tag">10元 正面</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- ========================================
+             页面切换导航
+             ======================================== -->
+        <nav class="page-nav">
+            <button class="nav-dot active" data-page="0"></button>
+            <button class="nav-dot" data-page="1"></button>
+        </nav>
+
+        <!-- ========================================
+             音频控制按钮
+             ======================================== -->
+        <button class="audio-control" id="audioControl" aria-label="切换静音">
+            <svg viewBox="0 0 24 24" id="audioIcon">
+                <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+            </svg>
+        </button>
+
+        <!-- ========================================
+             全屏模态框
+             ======================================== -->
+        <div class="modal-overlay" id="modalOverlay">
+            <div class="modal-content">
+                <button class="modal-close" id="modalClose">✕</button>
+                <img src="" alt="全屏查看" id="modalImage">
+                
+                <!-- 留言框（仅第二页图片显示） -->
+                <div class="message-box hidden" id="messageBox">
+                    <div class="message-header">
+                        <span class="message-title">◈ 留言</span>
+                        <button class="message-close" id="messageClose">✕</button>
+                    </div>
+                    <p class="message-text" id="messageText"></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========================================
+             Toast 提醒
+             ======================================== -->
+        <div class="toast" id="viewingToast">
+            <p>喵喵喵喵</p>
+        </div>
+
+        <!-- ========================================
+             背景音乐
+             ======================================== -->
+        <audio id="bgAudio" src="https://cdn.jsdelivr.net/gh/LOOTOOT/CUUgagaga@main/HappyBirthdaySong.mp3" preload="auto" loop></audio>
+    </div>
+
+    <script>
+        /**
+         * ========================================
+         * 生日页面 JavaScript 控制逻辑
+         * Apple 级动效 + 双页面 + 留言系统
+         * 修复版本
+         * ========================================
+         */
+
+        // ==================== 数据定义 ====================
+        // 第一页图片（无留言）
+        const page1Images = [
+            'https://cdn.jsdelivr.net/gh/LOOTOOT/CUUgagaga@main/CUU-mos.png',
+            'https://cdn.jsdelivr.net/gh/LOOTOOT/CUUgagaga@main/CUU-clear.png'
+        ];
+
+        // 第二页图片 + 留言（轮播区数据）
+        const carouselData = [
+            {
+                url: 'https://cdn.jsdelivr.net/gh/LOOTOOT/CUUgagaga@main/Jasmine_Happy.png',
+                message: '这是我个人最喜欢的一张，可惜图片比例不太对，不能做成镭射卡。😸而且，我翻了一下你给我发过的自拍，好看的大部分都是全身照，剩下怼脸的全是搞怪的🌚☝️搞得我实在没什么素材做镭射卡'
+            },
+            {
+                url: 'https://cdn.jsdelivr.net/gh/LOOTOOT/CUUgagaga@main/CUU_HP1.png',
+                message: '镭射卡需要3:1画幅，所以在第一张的基础上P了这个。镭射卡上因为色差看着好灰😇噫唏嘘呜呼哀哉（？）'
+            },
+            {
+                url: 'https://cdn.jsdelivr.net/gh/LOOTOOT/CUUgagaga@main/CUU_HP_2.png',
+                message: '这个一般，纯粹为了给镭射卡凑个背面嗯嗯'
+            },
+            {
+                url: 'https://cdn.jsdelivr.net/gh/LOOTOOT/CUUgagaga@main/CUU_5D1.jpg',
+                message: '。喵。唉我以为这是你的熊，我以为这是你的熊！结果后来问你，居然不是，居然不是。。。。我图都做完了。不管了，萌哉萌哉。'
+            },
+            {
+                url: 'https://cdn.jsdelivr.net/gh/LOOTOOT/CUUgagaga@main/CUU_5D2.jpg',
+                message: 'YES.敷衍的背面'
+            },
+            {
+                url: 'https://cdn.jsdelivr.net/gh/LOOTOOT/CUUgagaga@main/CUU_10D2.jpg',
+                message: '好吧。这是拍立得，和王嘉尔那个撕拉片的照片。旁边的是jasmine，茉莉花。我应该上色的，这样太诡异了私密马赛。'
+            }
+        ];
+
+        // 横图区数据
+        const galleryData = [
+            {
+                url: 'https://cdn.jsdelivr.net/gh/LOOTOOT/CUUgagaga@main/CUU_10D1.png',
+                message: '🤣🤣🤣我一直笑，我一直笑。10元纸币上映着伟大的神圣鞋摇摇国王！（没有合适的图片了，所以就选了这个）'
+            }
+        ];
+
+        // ==================== DOM 元素获取 ====================
+        const playPrompt = document.getElementById('playPrompt');
+        const pagesWrapper = document.getElementById('pagesWrapper');
+        const navDots = document.querySelectorAll('.nav-dot');
+        const bgAudio = document.getElementById('bgAudio');
+        const audioControl = document.getElementById('audioControl');
+        const audioIcon = document.getElementById('audioIcon');
+        const modalOverlay = document.getElementById('modalOverlay');
+        const modalImage = document.getElementById('modalImage');
+        const modalClose = document.getElementById('modalClose');
+        const messageBox = document.getElementById('messageBox');
+        const messageText = document.getElementById('messageText');
+        const messageClose = document.getElementById('messageClose');
+        const viewingToast = document.getElementById('viewingToast');
+
+        // 修复：正确的选择器 - 添加空格
+        const page1Cards = document.querySelectorAll('.page-1 .image-card');
+        const page2Cards = document.querySelectorAll('.page-2 .gallery-item');
+
+        // 轮播相关元素
+        const carouselTrack = document.getElementById('carouselTrack');
+        const carouselItems = document.querySelectorAll('.carousel-item');
+        const carouselIndicatorsContainer = document.getElementById('carouselIndicators');
+
+        // ==================== 状态变量 ====================
+        let currentPage = 0;
+        let toastTimer = null;
+        let currentImagePage = null;
+        let touchStartTime = 0;
+        const TAP_DELAY = 150; // 最小点击时间（毫秒），防止误触
+        let currentCarouselIndex = 0;
+
+        // ==================== 音频控制 ====================
+        
+        // 首次点击播放
+        playPrompt.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            playPrompt.classList.add('hidden');
+            bgAudio.volume = 0.3;
+            bgAudio.play().catch(function(err) {
+                console.warn('播放失败:', err);
+            });
+        });
+
+        // 触摸事件支持
+        playPrompt.addEventListener('touchend', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            playPrompt.classList.add('hidden');
+            bgAudio.volume = 0.3;
+            bgAudio.play().catch(function(err) {
+                console.warn('播放失败:', err);
+            });
+        }, { passive: false });
+
+        // 静音切换
+        audioControl.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            bgAudio.muted = !bgAudio.muted;
+            audioControl.classList.toggle('muted', bgAudio.muted);
+            
+            // 更新图标
+            if (bgAudio.muted) {
+                audioIcon.innerHTML = '<path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/>';
+            } else {
+                audioIcon.innerHTML = '<path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>';
+            }
+            
+            hapticFeedback();
+        });
+
+        // ==================== 页面切换 ====================
+        
+        function switchPage(pageIndex) {
+            currentPage = pageIndex;
+            
+            // 切换页面
+            if (pageIndex === 1) {
+                pagesWrapper.classList.add('page-2-active');
+            } else {
+                pagesWrapper.classList.remove('page-2-active');
+            }
+            
+            // 更新导航点
+            navDots.forEach(function(dot, i) {
+                if (i === pageIndex) {
+                    dot.classList.add('active');
+                } else {
+                    dot.classList.remove('active');
+                }
+            });
+
+            // 滚动到顶部
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            hapticFeedback();
+        }
+
+        // 导航点点击
+        navDots.forEach(function(dot, index) {
+            dot.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                switchPage(index);
+            });
+
+            dot.addEventListener('touchend', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                switchPage(index);
+            }, { passive: false });
+        });
+
+        // 触摸滑动切换
+        let touchStartX = 0;
+        let touchEndX = 0;
+        let touchStartY = 0;
+        let touchEndY = 0;
+
+        document.addEventListener('touchstart', function(e) {
+            touchStartX = e.changedTouches[0].screenX;
+            touchStartY = e.changedTouches[0].screenY;
+        }, { passive: true });
+
+        document.addEventListener('touchend', function(e) {
+            touchEndX = e.changedTouches[0].screenX;
+            touchEndY = e.changedTouches[0].screenY;
+            handleSwipe();
+        }, { passive: true });
+
+        function handleSwipe() {
+            const diffX = touchStartX - touchEndX;
+            const diffY = Math.abs(touchStartY - touchEndY);
+            const threshold = 80;
+
+            // 只有水平滑动大于垂直滑动时才切换页面
+            if (Math.abs(diffX) > threshold && Math.abs(diffX) > diffY) {
+                if (diffX > 0 && currentPage === 0) {
+                    switchPage(1);
+                } else if (diffX < 0 && currentPage === 1) {
+                    switchPage(0);
+                }
+            }
+        }
+
+        // ==================== 轮播控制 ====================
+
+        // 初始化轮播指示器
+        function initCarouselIndicators() {
+            carouselItems.forEach(function(_, index) {
+                const indicator = document.createElement('button');
+                indicator.classList.add('carousel-indicator');
+                if (index === 0) indicator.classList.add('active');
+                indicator.addEventListener('click', function() {
+                    scrollToCarouselItem(index);
+                });
+                carouselIndicatorsContainer.appendChild(indicator);
+            });
+        }
+
+        // 滚动到指定轮播项
+        function scrollToCarouselItem(index) {
+            if (index < 0 || index >= carouselItems.length) return;
+            currentCarouselIndex = index;
+            const item = carouselItems[index];
+            item.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+            updateCarouselState();
+        }
+
+        // 更新轮播状态
+        function updateCarouselState() {
+            carouselItems.forEach(function(item, i) {
+                if (i === currentCarouselIndex) {
+                    item.classList.add('active');
+                } else {
+                    item.classList.remove('active');
+                }
+            });
+
+            const indicators = carouselIndicatorsContainer.querySelectorAll('.carousel-indicator');
+            indicators.forEach(function(ind, i) {
+                if (i === currentCarouselIndex) {
+                    ind.classList.add('active');
+                } else {
+                    ind.classList.remove('active');
+                }
+            });
+        }
+
+        // 监听轮播滚动
+        let scrollTimeout = null;
+        carouselTrack.addEventListener('scroll', function() {
+            if (scrollTimeout) clearTimeout(scrollTimeout);
+            scrollTimeout = setTimeout(function() {
+                // 计算当前中心位置对应的元素
+                const trackRect = carouselTrack.getBoundingClientRect();
+                const centerX = trackRect.left + trackRect.width / 2;
+
+                let closestIndex = 0;
+                let closestDistance = Infinity;
+
+                carouselItems.forEach(function(item, index) {
+                    const itemRect = item.getBoundingClientRect();
+                    const itemCenterX = itemRect.left + itemRect.width / 2;
+                    const distance = Math.abs(itemCenterX - centerX);
+
+                    if (distance < closestDistance) {
+                        closestDistance = distance;
+                        closestIndex = index;
+                    }
+                });
+
+                currentCarouselIndex = closestIndex;
+                updateCarouselState();
+            }, 50);
+        });
+
+        // 轮播项点击
+        carouselItems.forEach(function(item) {
+            let itemTouchStart = 0;
+
+            item.addEventListener('touchstart', function(e) {
+                itemTouchStart = Date.now();
+            }, { passive: true });
+
+            item.addEventListener('click', function(e) {
+                const index = parseInt(item.dataset.carouselIndex);
+                // 如果不是当前active的，先滚动到它
+                if (index !== currentCarouselIndex) {
+                    scrollToCarouselItem(index);
+                    return;
+                }
+                // 检查触摸时间是否足够长
+                if (itemTouchStart && (Date.now() - itemTouchStart) < TAP_DELAY) {
+                    return;
+                }
+                e.preventDefault();
+                e.stopPropagation();
+                const data = carouselData[index];
+                openModal(data.url, data.message, 2, index);
+            });
+
+            item.addEventListener('touchend', function(e) {
+                const index = parseInt(item.dataset.carouselIndex);
+                // 如果不是当前active的，先滚动到它
+                if (index !== currentCarouselIndex) {
+                    return; // click事件会处理滚动
+                }
+                // 检查触摸时间是否足够长
+                if ((Date.now() - itemTouchStart) < TAP_DELAY) {
+                    return;
+                }
+                e.preventDefault();
+                e.stopPropagation();
+                const data = carouselData[index];
+                openModal(data.url, data.message, 2, index);
+            }, { passive: false });
+        });
+
+        // 初始化轮播
+        initCarouselIndicators();
+
+        // ==================== 模态框控制 ====================
+
+        // 第一页图片点击 - 添加延迟防误触
+        page1Cards.forEach(function(card) {
+            let cardTouchStart = 0;
+
+            card.addEventListener('touchstart', function(e) {
+                cardTouchStart = Date.now();
+            }, { passive: true });
+
+            card.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                // 检查触摸时间是否足够长
+                if (cardTouchStart && (Date.now() - cardTouchStart) < TAP_DELAY) {
+                    return; // 点击太快，忽略
+                }
+                const index = parseInt(card.dataset.index);
+                openModal(page1Images[index], null, 1, index);
+            });
+
+            card.addEventListener('touchend', function(e) {
+                // 检查触摸时间是否足够长
+                if ((Date.now() - cardTouchStart) < TAP_DELAY) {
+                    return; // 点击太快，忽略
+                }
+                e.preventDefault();
+                e.stopPropagation();
+                const index = parseInt(card.dataset.index);
+                openModal(page1Images[index], null, 1, index);
+            }, { passive: false });
+        });
+
+        // 第二页横图点击 - 使用galleryData
+        page2Cards.forEach(function(card, cardIndex) {
+            let cardTouchStart = 0;
+
+            card.addEventListener('touchstart', function(e) {
+                cardTouchStart = Date.now();
+            }, { passive: true });
+
+            card.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                // 检查触摸时间是否足够长
+                if (cardTouchStart && (Date.now() - cardTouchStart) < TAP_DELAY) {
+                    return; // 点击太快，忽略
+                }
+                const data = galleryData[cardIndex];
+                if (data) {
+                    openModal(data.url, data.message, 2, cardIndex);
+                }
+            });
+
+            card.addEventListener('touchend', function(e) {
+                // 检查触摸时间是否足够长
+                if ((Date.now() - cardTouchStart) < TAP_DELAY) {
+                    return; // 点击太快，忽略
+                }
+                e.preventDefault();
+                e.stopPropagation();
+                const data = galleryData[cardIndex];
+                if (data) {
+                    openModal(data.url, data.message, 2, cardIndex);
+                }
+            }, { passive: false });
+        });
+
+        function openModal(imageUrl, message, page, index) {
+            modalImage.src = imageUrl;
+            currentImagePage = page;
+            
+            // 控制留言框显示
+            if (message) {
+                messageText.textContent = message;
+                messageBox.classList.remove('hidden');
+            } else {
+                messageBox.classList.add('hidden');
+            }
+            
+            modalOverlay.classList.add('active');
+            
+            // 第一页第二张图片，4秒后提示
+            if (page === 1 && index === 1) {
+                toastTimer = setTimeout(function() {
+                    showToast();
+                }, 4000);
+            }
+            
+            hapticFeedback();
+        }
+
+        function closeModal() {
+            modalOverlay.classList.remove('active');
+            if (toastTimer) {
+                clearTimeout(toastTimer);
+                toastTimer = null;
+            }
+        }
+
+        function hideMessage() {
+            messageBox.classList.add('hidden');
+            hapticFeedback();
+        }
+
+        // 关闭按钮点击
+        modalClose.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            closeModal();
+        });
+
+        modalClose.addEventListener('touchend', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            closeModal();
+        }, { passive: false });
+
+        // 留言关闭按钮 - 修复：使用多种事件确保可以关闭
+        function handleMessageClose(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            e.stopImmediatePropagation();
+            hideMessage();
+            return false;
+        }
+
+        messageClose.addEventListener('click', handleMessageClose);
+        messageClose.addEventListener('touchstart', handleMessageClose, { passive: false });
+        messageClose.addEventListener('touchend', handleMessageClose, { passive: false });
+        messageClose.addEventListener('pointerdown', handleMessageClose);
+
+        // 点击背景关闭
+        modalOverlay.addEventListener('click', function(e) {
+            if (e.target === modalOverlay) {
+                closeModal();
+            }
+        });
+
+        // ESC 关闭
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && modalOverlay.classList.contains('active')) {
+                closeModal();
+            }
+        });
+
+        // ==================== Toast ====================
+        
+        function showToast() {
+            viewingToast.classList.add('show');
+            setTimeout(function() {
+                viewingToast.classList.remove('show');
+            }, 2500);
+        }
+
+        // ==================== 触觉反馈（如果支持） ====================
+        
+        function hapticFeedback() {
+            if ('vibrate' in navigator) {
+                navigator.vibrate(10);
+            }
+        }
+
+        // ==================== 性能优化：图片懒加载 ====================
+        
+        if ('IntersectionObserver' in window) {
+            const imgObserver = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        if (img.dataset.src) {
+                            img.src = img.dataset.src;
+                            img.removeAttribute('data-src');
+                        }
+                        imgObserver.unobserve(img);
+                    }
+                });
+            }, { rootMargin: '100px' });
+
+            // 对第二页图片启用懒加载
+            document.querySelectorAll('.page-2 img[data-src]').forEach(function(img) {
+                imgObserver.observe(img);
+            });
+        }
+
+        // ==================== 调试信息 ====================
+        console.log('页面加载完成');
+        console.log('第一页图片卡片数量:', page1Cards.length);
+        console.log('第二页图片卡片数量:', page2Cards.length);
+    </script>
+</body>
+</html>

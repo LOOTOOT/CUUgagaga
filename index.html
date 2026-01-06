@@ -2,208 +2,630 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>六的惊喜</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&display=swap">
-    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>两张看了就犯恶心的超绝图片</title>
+    
+    <!-- Preconnect for faster loading -->
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="preconnect" href="https://raw.githubusercontent.com">
+    
+    <!-- Google Fonts via CDN for China -->
+    <link href="https://fonts.loli.net/css2?family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ========== CSS Variables ========== */
+        :root {
+            --bg-main: #FFFBF8;
+            --bg-secondary: #FFCCB6;
+            --accent: #D8F878;
+            --text-dark: color-mix(in srgb, var(--bg-main) 10%, black);
+            --text-muted: color-mix(in srgb, var(--bg-secondary) 40%, black);
+            
+            /* Radius */
+            --radius-sm: 16px;
+            --radius-default: 20px;
+            --radius-lg: 24px;
+            --radius-xl: 32px;
+            
+            /* Transitions */
+            --transition-base: all 0.2s ease;
+        }
+        
+        /* ========== Reset & Base ========== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html, body {
+            height: 100%;
+            overflow-x: hidden;
+        }
+        
+        body {
+            font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(
+                135deg,
+                var(--bg-main) 0%,
+                color-mix(in srgb, var(--bg-main) 85%, var(--bg-secondary)) 50%,
+                color-mix(in srgb, var(--bg-secondary) 70%, var(--bg-main)) 100%
+            );
+            min-height: 100vh;
+            color: var(--text-dark);
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        /* ========== Main Container ========== */
+        .container {
+            max-width: 420px;
+            margin: 0 auto;
+            padding: 24px 16px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        /* ========== Header ========== */
+        .header {
+            text-align: center;
+            margin-bottom: 24px;
+            padding: 20px;
+            background: linear-gradient(
+                135deg,
+                var(--bg-secondary) 0%,
+                color-mix(in srgb, var(--bg-secondary) 85%, black) 50%,
+                color-mix(in srgb, var(--bg-secondary) 70%, black) 100%
+            );
+            border-radius: var(--radius-xl);
+            box-shadow:
+                0 4px 12px color-mix(in srgb, var(--bg-secondary) 35%, transparent),
+                inset 0 1px 0 rgba(255,255,255,0.2),
+                inset 0 -1px 0 rgba(0,0,0,0.1);
+            width: 100%;
+        }
+        
+        .header h1 {
+            font-size: 1.4rem;
+            font-weight: 900;
+            line-height: 1.4;
+            background: linear-gradient(
+                135deg,
+                var(--text-dark) 0%,
+                color-mix(in srgb, var(--accent) 60%, black) 100%
+            );
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        /* ========== Image Gallery ========== */
+        .gallery {
+            display: flex;
+            gap: 12px;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        
+        .image-card {
+            flex: 1;
+            aspect-ratio: 9/16;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            cursor: pointer;
+            position: relative;
+            background: linear-gradient(
+                135deg,
+                var(--bg-main) 0%,
+                color-mix(in srgb, var(--bg-main) 85%, black) 50%,
+                color-mix(in srgb, var(--bg-main) 70%, black) 100%
+            );
+            box-shadow:
+                0 4px 12px color-mix(in srgb, var(--bg-secondary) 35%, transparent),
+                inset 0 1px 0 rgba(255,255,255,0.2),
+                inset 0 -1px 0 rgba(0,0,0,0.1);
+            transition: var(--transition-base);
+        }
+        
+        .image-card:hover {
+            box-shadow:
+                0 6px 20px color-mix(in srgb, var(--bg-secondary) 45%, transparent),
+                inset 0 1px 0 rgba(255,255,255,0.25),
+                inset 0 -1px 0 rgba(0,0,0,0.15);
+            transform: scale(1.02);
+        }
+        
+        .image-card:active {
+            transform: scale(0.97);
+        }
+        
+        .image-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        
+        /* Second image hidden state */
+        .image-card.hidden-card {
+            opacity: 0.3;
+            pointer-events: none;
+        }
+        
+        .image-card.hidden-card::after {
+            content: '稍等...';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--text-muted);
+        }
+        
+        .image-card.revealed {
+            opacity: 1;
+            pointer-events: auto;
+            animation: revealPop 0.5s ease-out;
+        }
+        
+        @keyframes revealPop {
+            0% {
+                opacity: 0.3;
+                transform: scale(0.9);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        
+        /* ========== Info Card ========== */
+        .info-card {
+            width: 100%;
+            padding: 16px 20px;
+            background: linear-gradient(
+                135deg,
+                var(--accent) 0%,
+                color-mix(in srgb, var(--accent) 85%, black) 50%,
+                color-mix(in srgb, var(--accent) 70%, black) 100%
+            );
+            border-radius: var(--radius-default);
+            box-shadow:
+                0 4px 12px color-mix(in srgb, var(--accent) 35%, transparent),
+                inset 0 1px 0 rgba(255,255,255,0.2),
+                inset 0 -1px 0 rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .info-card p {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--text-dark);
+            line-height: 1.5;
+        }
+        
+        .info-card.reminder {
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.4s ease;
+        }
+        
+        .info-card.reminder.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* ========== Audio Control ========== */
+        .audio-control {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(
+                135deg,
+                var(--bg-secondary) 0%,
+                color-mix(in srgb, var(--bg-secondary) 85%, black) 50%,
+                color-mix(in srgb, var(--bg-secondary) 70%, black) 100%
+            );
+            box-shadow:
+                0 4px 12px color-mix(in srgb, var(--bg-secondary) 35%, transparent),
+                inset 0 1px 0 rgba(255,255,255,0.2),
+                inset 0 -1px 0 rgba(0,0,0,0.1);
+            transition: var(--transition-base);
+            z-index: 100;
+        }
+        
+        .audio-control:hover {
+            box-shadow:
+                0 6px 20px color-mix(in srgb, var(--bg-secondary) 45%, transparent),
+                inset 0 1px 0 rgba(255,255,255,0.25),
+                inset 0 -1px 0 rgba(0,0,0,0.15);
+            transform: scale(1.02);
+        }
+        
+        .audio-control:active {
+            transform: scale(0.97);
+        }
+        
+        .audio-control svg {
+            width: 24px;
+            height: 24px;
+            fill: var(--text-dark);
+        }
+        
+        .audio-control .muted {
+            display: none;
+        }
+        
+        .audio-control.is-muted .playing {
+            display: none;
+        }
+        
+        .audio-control.is-muted .muted {
+            display: block;
+        }
+        
+        /* ========== Fullscreen Overlay ========== */
+        .fullscreen-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .fullscreen-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .fullscreen-overlay img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+        
+        .fullscreen-overlay.active img {
+            transform: scale(1);
+        }
+        
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            border: none;
+            background: linear-gradient(
+                135deg,
+                var(--bg-main) 0%,
+                color-mix(in srgb, var(--bg-main) 85%, black) 50%,
+                color-mix(in srgb, var(--bg-main) 70%, black) 100%
+            );
+            box-shadow:
+                0 4px 12px color-mix(in srgb, var(--bg-main) 35%, transparent),
+                inset 0 1px 0 rgba(255,255,255,0.2),
+                inset 0 -1px 0 rgba(0,0,0,0.1);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition-base);
+        }
+        
+        .close-btn:hover {
+            transform: scale(1.02);
+        }
+        
+        .close-btn:active {
+            transform: scale(0.97);
+        }
+        
+        .close-btn svg {
+            width: 20px;
+            height: 20px;
+            stroke: var(--text-dark);
+            stroke-width: 2;
+        }
+        
+        /* ========== Footer ========== */
+        .footer {
+            margin-top: auto;
+            padding-top: 20px;
+            text-align: center;
+        }
+        
+        .footer p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+        
+        /* ========== Tap Prompt (for autoplay) ========== */
+        .tap-prompt {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                135deg,
+                var(--bg-main) 0%,
+                color-mix(in srgb, var(--bg-main) 85%, var(--bg-secondary)) 50%,
+                color-mix(in srgb, var(--bg-secondary) 70%, var(--bg-main)) 100%
+            );
+            z-index: 2000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+        
+        .tap-prompt.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+        
+        .tap-prompt-content {
+            text-align: center;
+            padding: 40px;
+            background: linear-gradient(
+                135deg,
+                var(--bg-secondary) 0%,
+                color-mix(in srgb, var(--bg-secondary) 85%, black) 50%,
+                color-mix(in srgb, var(--bg-secondary) 70%, black) 100%
+            );
+            border-radius: var(--radius-xl);
+            box-shadow:
+                0 4px 12px color-mix(in srgb, var(--bg-secondary) 35%, transparent),
+                inset 0 1px 0 rgba(255,255,255,0.2),
+                inset 0 -1px 0 rgba(0,0,0,0.1);
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.02);
+            }
+        }
+        
+        .tap-prompt-content h2 {
+            font-size: 1.5rem;
+            font-weight: 900;
+            margin-bottom: 12px;
+            color: var(--text-dark);
+        }
+        
+        .tap-prompt-content p {
+            font-size: 1rem;
+            color: var(--text-muted);
+        }
+        
+        .tap-icon {
+            width: 48px;
+            height: 48px;
+            margin-bottom: 16px;
+            fill: var(--text-dark);
+            animation: tapBounce 1s ease-in-out infinite;
+        }
+        
+        @keyframes tapBounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-8px);
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- 装饰元素 -->
-    <div class="decoration-container">
-        <div class="decoration dot1"></div>
-        <div class="decoration dot2"></div>
-        <div class="decoration line1"></div>
-        <div class="decoration line2"></div>
-        <div class="decoration circle1"></div>
-        <div class="decoration circle2"></div>
+    <!-- Tap to start prompt (for mobile autoplay) -->
+    <div class="tap-prompt" id="tapPrompt">
+        <div class="tap-prompt-content">
+            <svg class="tap-icon" viewBox="0 0 24 24">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+            </svg>
+            <h2>🎂 点击开始 🎂</h2>
+            <p>鞋摇摇生日快乐</p>
+        </div>
     </div>
-    
-    <!-- 初始场景 -->
-    <div id="initialScene" class="scene container">
-        <div id="typingText1" class="typing-text">嗨，泻药药</div>
-        <div id="typingText2" class="typing-text">很高兴见到你，自我介绍一下</div>
-        <div id="typingText3" class="typing-text">我是六</div>
-        <div id="typingText4" class="typing-text">你知道我被设计出来做什么的吗？</div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <header class="header">
+            <h1>两张看了就犯恶心的超绝图片</h1>
+        </header>
         
-        <div id="question" class="question">你知道我被设计出来做什么的吗？</div>
-        
-        <div class="options" id="options">
-            <button class="option-btn know" id="knowBtn">聪明如我，当然知道</button>
-            <button class="option-btn dunno" id="dunnoBtn">啊吧啊吧？</button>
-        </div>
-    </div>
-    
-    <!-- 聪明如我场景 -->
-    <div id="knowScene" class="scene container hide">
-        <div class="emoji-container">
-            <div class="emoji thinking animated">🤔</div>
-            <div class="emoji pointing animated">🫵</div>
-        </div>
-        <div class="neon-text">啊哈！那你给我说说看？</div>
-        
-        <div class="input-container">
-            <input type="text" id="userInput" class="elegant-input" placeholder="请输入你的想法...">
-            <button id="submitInput" class="submit-btn">提交</button>
-        </div>
-        
-        <div class="option-container">
-            <button id="emperorOption" class="emperor-option">朕是汉皇！一定是饭温馨这个小人想害朕！</button>
-        </div>
-    </div>
-    
-    <!-- 啊吧啊吧场景 -->
-    <div id="dunnoScene" class="scene container hide">
-        <div id="emojiRain" class="emoji-rain"></div>
-        <div class="message-box">
-            <p class="highlight-text">陛下，您不太聪明嘛。</p>
-            <p>好吧好吧，还是让臣给你展示一下吧</p>
-        </div>
-    </div>
-    
-    <!-- 聪明结果场景 -->
-    <div id="smartResultScene" class="scene container hide">
-        <div id="celebration" class="celebration">
-            <div class="fireworks"></div>
-            <div class="balloons"></div>
-        </div>
-        <div class="result-message">
-            <p class="highlight-text">小皇帝还挺聪明</p>
-            <p class="big-text">既然如此……</p>
-            <p>那就给你看看惊喜吧</p>
-        </div>
-    </div>
-    
-    <!-- 成绩查询页面 -->
-    <div id="cetQueryScene" class="scene hide">
-        <div class="cet-container">
-            <header class="cet-header">
-                <div class="header-left">
-                    <img src="https://www.neea.edu.cn/res/Home/structure/22060521.png" alt="NEEA Logo" class="logo">
-                    <span class="website-name">中国教育考试网</span>
-                </div>
-                <div class="header-right">
-                    <span class="icon">🔍</span>
-                    <span class="icon">☰</span>
-                </div>
-            </header>
-
-            <div class="breadcrumbs">
-                <a href="#">首页</a> > <a href="#">成绩查询</a>
-            </div>
-
-            <div id="query-container" class="query-box">
-                <div class="query-title-bar">
-                    <h2 class="query-title">2024年下半年全国大学英语四、六级考试(含口试) 成绩查询</h2>
-                </div>
-
-                <div class="query-form">
-                    <div class="input-group">
-                        <label for="name">姓 名</label>
-                        <input type="text" id="cet-name" placeholder="部分生僻字支持快捷输入" value="泻药药">
-                    </div>
-                    <div class="input-group">
-                        <label for="id-number">证件号码/准考证号</label>
-                        <input type="text" id="cet-id-number" value="340601********1234">
-                    </div>
-
-                    <button class="query-button" id="cetQueryBtn">查 询</button>
-
-                    <div class="tips">
-                        <p>温馨提示：</p>
-                        <p>1. 若考生的口试成绩为不合格，则成绩报告单上不报道其口试成绩。</p>
-                    </div>
-
-                    <div class="links">
-                        <a href="#">常见问题</a> <span class="separator">|</span> <a href="#">联系我们</a>
-                    </div>
-                </div>
-            </div>
-
-            <div id="results-container" class="results-box hide">
-                <div class="results-title-bar">
-                    <h2 class="results-title">全国大学英语六级考试(CET6)成绩详情</h2>
-                </div>
-
-                <div class="results-details">
-                    <div class="detail-row">
-                        <span class="detail-label">姓 名</span>
-                        <span class="detail-value">泻药药</span>
-                    </div>
-                    <div class="detail-row">
-                        <span class="detail-label">证件号码</span>
-                        <span class="detail-value">340601********1234</span>
-                    </div>
-                    <div class="detail-row">
-                        <span class="detail-label">学 校</span>
-                        <span class="detail-value">蚌埠学院</span>
-                    </div>
-                    <div class="detail-row">
-                        <span class="detail-label">成绩报告单编号</span>
-                        <span class="detail-value">1234567890</span>
-                    </div>
-                </div>
-
-                <div class="score-box">
-                    <div class="score-title">笔试成绩</div>
-                    <div class="score-table">
-                        <div class="score-row">
-                            <span class="score-label">准考证号</span>
-                            <span class="score-value">123456789012345</span>
-                        </div>
-                        <div class="score-row">
-                            <span class="score-label">总　分</span>
-                            <span class="score-value red-score">666</span>
-                        </div>
-                        <div class="score-row">
-                            <span class="score-label">听　力</span>
-                            <span class="score-value">222</span>
-                        </div>
-                        <div class="score-row">
-                            <span class="score-label">阅　读</span>
-                            <span class="score-value">222</span>
-                        </div>
-                        <div class="score-row">
-                            <span class="score-label">写作和翻译</span>
-                            <span class="score-value">222</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="score-box">
-                    <div class="score-title">口试成绩</div>
-                    <div class="score-table">
-                        <div class="score-row">
-                            <span class="score-label">准考证号</span>
-                            <span class="score-value">--</span>
-                        </div>
-                        <div class="score-row">
-                            <span class="score-label">成　绩</span>
-                            <span class="score-value">--</span>
-                        </div>
-                    </div>
-                </div>
-
-                <button class="back-button" id="backToCetQueryBtn">返 回</button>
-                <button class="emperor-complaint-btn" id="emperorComplaintBtn">你给朕看的是什么玩意儿？</button>
-            </div>
-        </div>
-    </div>
-    
-    <!-- 彩蛋页面 -->
-    <div id="easterEggScene" class="scene hide">
-        <div class="easter-egg-container">
-            <div class="floaty-text-container">
-                <div class="floaty-text" id="floatyText1">六祝你666</div>
-                <div class="floaty-text" id="floatyText2">这是一个整活小网页</div>
-                <div class="floaty-text" id="floatyText3">看完了吗？</div>
-                <div class="floaty-text" id="floatyText4">刷~抖~音~去~吧~</div>
+        <div class="gallery">
+            <!-- Image 1: mos (shown first) -->
+            <div class="image-card" id="card1" onclick="openFullscreen(0)">
+                <img src="https://raw.githubusercontent.com/LOOTOOT/CUUgagaga/main/CUU-mos.png" 
+                     alt="图片一" 
+                     loading="eager">
             </div>
             
-            <button class="restart-button" id="restartBtn">再来一遍</button>
+            <!-- Image 2: clear (revealed after 4s) -->
+            <div class="image-card hidden-card" id="card2" onclick="openFullscreen(1)">
+                <img src="https://raw.githubusercontent.com/LOOTOOT/CUUgagaga/main/CUU-clear.png" 
+                     alt="图片二" 
+                     loading="eager">
+            </div>
         </div>
+        
+        <!-- Reminder for second image -->
+        <div class="info-card reminder" id="reminder">
+            <p>第二张图解锁了！点击查看（一样的嘻嘻）</p>
+        </div>
+        
+        <!-- Footer info -->
+        <div class="info-card">
+            <p>没了，就2张图。<br>头晕吗？头晕就是好图.jpg我做完恶心了好久</p>
+        </div>
+        
+        <footer class="footer">
+            <p>🎂 生日快乐 🎂</p>
+        </footer>
     </div>
-
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="script.js"></script>
+    
+    <!-- Audio Control Button -->
+    <button class="audio-control" id="audioBtn" onclick="toggleAudio()">
+        <!-- Playing icon -->
+        <svg class="playing" viewBox="0 0 24 24">
+            <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+        </svg>
+        <!-- Muted icon -->
+        <svg class="muted" viewBox="0 0 24 24">
+            <path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/>
+        </svg>
+    </button>
+    
+    <!-- Fullscreen Overlay -->
+    <div class="fullscreen-overlay" id="fullscreenOverlay" onclick="closeFullscreen()">
+        <button class="close-btn" onclick="closeFullscreen()">
+            <svg viewBox="0 0 24 24" fill="none">
+                <line x1="18" y1="6" x2="6" y2="18"/>
+                <line x1="6" y1="6" x2="18" y2="18"/>
+            </svg>
+        </button>
+        <img id="fullscreenImg" src="" alt="全屏查看">
+    </div>
+    
+    <!-- Audio Element -->
+    <audio id="bgMusic" preload="auto">
+        <source src="https://raw.githubusercontent.com/LOOTOOT/CUUgagaga/main/HappyBirthdaySong.mp3" type="audio/mpeg">
+    </audio>
+    
+    <script>
+        // ========== Global Variables ==========
+        const images = [
+            'https://raw.githubusercontent.com/LOOTOOT/CUUgagaga/main/CUU-mos.png',
+            'https://raw.githubusercontent.com/LOOTOOT/CUUgagaga/main/CUU-clear.png'
+        ];
+        
+        const bgMusic = document.getElementById('bgMusic');
+        const audioBtn = document.getElementById('audioBtn');
+        const tapPrompt = document.getElementById('tapPrompt');
+        const card2 = document.getElementById('card2');
+        const reminder = document.getElementById('reminder');
+        const fullscreenOverlay = document.getElementById('fullscreenOverlay');
+        const fullscreenImg = document.getElementById('fullscreenImg');
+        
+        let isMuted = false;
+        let hasStarted = false;
+        
+        // ========== Initialize ==========
+        function init() {
+            // Set initial volume (quiet)
+            bgMusic.volume = 0.3;
+            
+            // Tap to start (required for mobile autoplay)
+            tapPrompt.addEventListener('click', startExperience);
+        }
+        
+        // ========== Start Experience ==========
+        function startExperience() {
+            if (hasStarted) return;
+            hasStarted = true;
+            
+            // Hide tap prompt
+            tapPrompt.classList.add('hidden');
+            
+            // Play music
+            bgMusic.play().catch(err => {
+                console.log('Audio play failed:', err);
+            });
+            
+            // Reveal second image after 4 seconds
+            setTimeout(() => {
+                card2.classList.remove('hidden-card');
+                card2.classList.add('revealed');
+                reminder.classList.add('show');
+                
+                // Hide reminder after 3 seconds
+                setTimeout(() => {
+                    reminder.classList.remove('show');
+                }, 3000);
+            }, 4000);
+            
+            // Music ends listener (play only once)
+            bgMusic.addEventListener('ended', () => {
+                audioBtn.classList.add('is-muted');
+            });
+        }
+        
+        // ========== Toggle Audio ==========
+        function toggleAudio() {
+            isMuted = !isMuted;
+            bgMusic.muted = isMuted;
+            
+            if (isMuted) {
+                audioBtn.classList.add('is-muted');
+            } else {
+                audioBtn.classList.remove('is-muted');
+                // If not playing, try to play
+                if (bgMusic.paused && hasStarted) {
+                    bgMusic.play().catch(err => console.log('Play failed:', err));
+                }
+            }
+        }
+        
+        // ========== Fullscreen Image ==========
+        function openFullscreen(index) {
+            // Don't open if card2 is still hidden
+            if (index === 1 && card2.classList.contains('hidden-card')) {
+                return;
+            }
+            
+            fullscreenImg.src = images[index];
+            fullscreenOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeFullscreen() {
+            fullscreenOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        
+        // Close on escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeFullscreen();
+            }
+        });
+        
+        // ========== Run ==========
+        init();
+    </script>
 </body>
 </html>
